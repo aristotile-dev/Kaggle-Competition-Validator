@@ -1,0 +1,16 @@
+[Unit]
+Description=Kaggle Validator Telegram Poller (long-polling, instant reaction)
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/kaggle-validator
+ExecStart=/home/ubuntu/kaggle-validator/venv/bin/python /home/ubuntu/kaggle-validator/notify/telegram_poller.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/ubuntu/kaggle-validator/logs/poller.log
+StandardError=append:/home/ubuntu/kaggle-validator/logs/poller.log
+
+[Install]
+WantedBy=multi-user.target
